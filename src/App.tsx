@@ -2,6 +2,8 @@ import ActionsBar, { ActionsBarItem } from "./components/ActionsBar";
 import SettingsButton from "./components/SettingsButton";
 import Timer from "./components/Timer";
 
+import "./styles/main.sass"
+
 export default function App() {
   return (
     <main className="main">
@@ -9,8 +11,8 @@ export default function App() {
 
       <ActionsBar>
         <ActionsBarItem active title="Pomodoro" />
-        <ActionsBarItem title="Descanso Corto" />
-        <ActionsBarItem title="Descanso Largo" />
+        <ActionsBarItem title="Short Break" />
+        <ActionsBarItem title="Long Break" />
       </ActionsBar>
 
       <Timer />

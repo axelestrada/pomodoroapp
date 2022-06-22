@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./styles/timer.sass";
 
 const Timer = () => {
   const [runningTimer, setRunningTimer] = useState(false);
@@ -34,36 +35,33 @@ const Timer = () => {
   };
 
   return (
-    <button className="timer">
+    <button className="timer" data-theme="RED">
       <svg
         className="progressbar"
-        fill="currentColor"
-        width="200"
-        height="200"
         viewBox="0 0 100 100"
       >
-        <circle fill="currentColor" r="48" cx="50" cy="50" />
+        <circle className="background" r="48" cx="50" cy="50" />
         <circle
           style={{ transform: "rotate(-0.25turn)", transformOrigin: "center" }}
-          className="stroke"
+          className="progress"
           fill="none"
           r="44"
           cx="50"
           cy="50"
-          stroke="currentColor"
-          stroke-dasharray="276.5 276.5"
-          stroke-linecap="round"
-          stroke-width="3"
-          stroke-dashoffset={
+          strokeDasharray="276.5 276.5"
+          strokeLinecap="round"
+          strokeWidth="3"
+          strokeDashoffset={
             276.5 -
             (durationToPerecents(timerDuration, fullDuration) / 100) * 276.5
           }
         />
 
         <text
+          className="time"
           fill="currentColor"
-          font-size="150%"
-          text-anchor="middle"
+          fontSize="1.5rem"
+          textAnchor="middle"
           x="50%"
           y="50%"
           dy=".3em"
@@ -72,13 +70,15 @@ const Timer = () => {
         </text>
 
         <text
+          className="timer-state"
           fill="currentColor"
-          font-size="30%"
-          text-anchor="middle"
+          fontSize="0.375rem"
+          textAnchor="middle"
           x="50%"
           y="70%"
+          dx=".7em"
         >
-          {runningTimer ? "PAUSAR" : "COMENZAR"}
+          {runningTimer ? "PAUSE" : "START"}
         </text>
       </svg>
     </button>

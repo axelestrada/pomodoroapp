@@ -1,5 +1,5 @@
-//Import types
 import { FC, ReactNode } from "react";
+import "./styles/actionsBar.sass"
 
 //Actions Bar
 interface IActionsBar {
@@ -7,7 +7,7 @@ interface IActionsBar {
 }
 
 const ActionsBar: FC<IActionsBar> = ({ children }) => (
-  <div className="actions-bar">{children}</div>
+  <div className="actions-bar" data-theme="RED">{children}</div>
 );
 
 // Actions Bar Item
@@ -17,8 +17,8 @@ interface IActionBarItem {
 }
 
 export const ActionsBarItem: FC<IActionBarItem> = ({ title, active }) => (
-  <button className={active ? "button active" : "button"}>{title}</button>
+  <button className={active ? "action active" : "action"}>{title}</button>
 );
-
+ 
 //Export default Actions Bar
 export default ActionsBar;

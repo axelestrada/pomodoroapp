@@ -1,5 +1,7 @@
+import "./styles/settingsButton.sass"
+
 const SettingsButton = () => (
-  <button>
+  <button className="settings-button">
     <svg
       fill="currentColor"
       width="24"

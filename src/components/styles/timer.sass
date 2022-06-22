@@ -1,0 +1,47 @@
+@import /src/styles/colors
+
+.timer
+  width: 18rem
+  height: 18rem
+  border-radius: 999px
+  border: none
+  outline: none
+  transition: box-shadow .3s ease-in-out
+  background-color: $DARKESTBLUE
+  cursor: pointer
+
+  @media screen and (min-width: 640px)
+    width: 24rem
+    height: 24rem
+  
+
+  &, &:active
+    box-shadow: -50px -50px 100px 0 rgba(215, 224, 255, 0.1), 50px 50px 100px 0 rgba(22, 25, 50, 0.5), inset 20px 20px 25px 0 rgba(22, 25, 50, 0.5), inset -20px -20px 25px 0 rgba(215, 224, 255, 0.1)
+
+  &:hover
+    box-shadow: -50px -50px 100px 0 rgba(22, 25, 50, 0.5), 50px 50px 100px 0 rgba(215, 224, 255, 0.1)
+
+  .progressbar 
+    .background
+      fill: $DARKESTBLUE
+    
+    .progress
+      transition: stroke-dashoffset .5s linear
+
+  &[data-theme=RED] .progress
+    stroke: $RED
+
+  &[data-theme=CYAN] .progress
+    stroke: $CYAN
+
+  &[data-theme=VIOLET] .progress
+    stroke: $VIOLET
+
+  .time, .timer-state
+    font-weight: 700
+    color: $LIGHTBLUE
+
+  .timer-state
+    text-transform: uppercase
+    letter-spacing: 1.4em
+
