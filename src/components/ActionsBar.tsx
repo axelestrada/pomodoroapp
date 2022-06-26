@@ -1,9 +1,13 @@
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, useContext } from "react";
+import { AppContext } from "../state/AppProvider";
+
 import "./styles/actionsBar.sass";
 
 const ActionsBar: FC<{ children: ReactNode }> = ({ children }) => {
+  const { state } = useContext(AppContext);
+
   return (
-    <div className="actions-bar" data-theme="RED">
+    <div className="actions-bar" data-theme={state.theme.color}>
       {children}
     </div>
   );
