@@ -1,11 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./styles/timer.sass";
 
 const Timer = () => {
   const [runningTimer, setRunningTimer] = useState(false);
 
-  const [fullDuration, setFullDuration] = useState(20);
-  const [timerDuration, setTimerDuration] = useState(1079);
+  const [timerDuration, setTimerDuration] = useState(750);
+
+  useEffect(() => {
+    if (runningTimer) {
+      const interval = setInterval(() => {
+        setTimerDuration((prev) => prev - 1);
+      }, 1000);
+
+      return () => clearInterval(interval);
+    }
+  }, [runningTimer]);
 
   const minutesToSeconds = (minutes: number) => minutes * 60;
 
@@ -22,7 +31,7 @@ const Timer = () => {
     return minutes + ":" + seconds;
   };
 
-  const durationToPerecents = (
+  const durationToPercents = (
     currentDuration: number,
     fullDuration: number
   ) => {
@@ -35,11 +44,12 @@ const Timer = () => {
   };
 
   return (
-    <button className="timer" data-theme="RED">
-      <svg
-        className="progressbar"
-        viewBox="0 0 100 100"
-      >
+    <button
+      className="timer"
+      data-theme="RED"
+      onClick={() => setRunningTimer(!runningTimer)}
+    >
+      <svg className="progressbar" viewBox="0 0 100 100">
         <circle className="background" r="48" cx="50" cy="50" />
         <circle
           style={{ transform: "rotate(-0.25turn)", transformOrigin: "center" }}
@@ -52,8 +62,7 @@ const Timer = () => {
           strokeLinecap="round"
           strokeWidth="3"
           strokeDashoffset={
-            276.5 -
-            (durationToPerecents(timerDuration, fullDuration) / 100) * 276.5
+            276.5 - (durationToPercents(timerDuration, 1500) / 100) * 276.5
           }
         />
 

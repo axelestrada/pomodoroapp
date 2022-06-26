@@ -1,24 +1,27 @@
 import { FC, ReactNode } from "react";
-import "./styles/actionsBar.sass"
+import "./styles/actionsBar.sass";
 
-//Actions Bar
-interface IActionsBar {
-  children: ReactNode;
-}
+const ActionsBar: FC<{ children: ReactNode }> = ({ children }) => {
+  return (
+    <div className="actions-bar" data-theme="RED">
+      {children}
+    </div>
+  );
+};
 
-const ActionsBar: FC<IActionsBar> = ({ children }) => (
-  <div className="actions-bar" data-theme="RED">{children}</div>
-);
-
-// Actions Bar Item
 interface IActionBarItem {
   title: string;
-  active?: boolean;
 }
 
-export const ActionsBarItem: FC<IActionBarItem> = ({ title, active }) => (
-  <button className={active ? "action active" : "action"}>{title}</button>
-);
- 
-//Export default Actions Bar
+export const ActionsBarItem: FC<IActionBarItem> = ({ title }) => {
+  return (
+    <button className={"action"}>
+      {title
+        .toLowerCase()
+        .replace("_", " ")
+        .replace(/(^\w{1})|(\s+\w{1})/g, (letter) => letter.toUpperCase())}
+    </button>
+  );
+};
+
 export default ActionsBar;

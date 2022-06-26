@@ -19,10 +19,23 @@ body
     width: 100%
     min-height: 100vh
 
-    .title
+    &>.title
       font-size: 2rem
       font-weight: 700
       color: $LIGHTBLUE
 
     @media screen and (min-width: 640px)
+      gap: 2rem
       padding: 2rem 0
+
+button
+  display: grid
+  place-items: center
+  background: none
+  cursor: pointer
+
+input,
+button
+  font: inherit
+  border: none
+  outline: none
