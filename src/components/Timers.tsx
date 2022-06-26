@@ -16,7 +16,7 @@ const Timers = () => {
           onClick={() => {
             dispatch({
               type: "TIMER",
-              payload: { current: timer },
+              payload: { ...state.timer, ...{ current: timer } },
             });
           }}
         >

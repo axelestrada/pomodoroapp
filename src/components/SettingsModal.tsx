@@ -1,25 +1,46 @@
-import {
-  Dispatch,
-  FC,
-  ReactNode,
-  SetStateAction,
-  useEffect,
-  useState,
-} from "react";
+import { ReactNode, useContext, useEffect, useState } from "react";
+import { AppContext } from "../state/AppProvider";
+import { timers } from "../state/interfaces";
+
 import "./styles/settingsModal.sass";
 
-const SettingsModal = () => {
+const SettingsModal = ({
+  open,
+  close,
+}: {
+  open: boolean;
+  close: () => void;
+}) => {
+  const { state } = useContext(AppContext);
+
+  const [timerDurations, setTimerDurations] = useState(state.timer.durations);
+  const [errors, setErrors] = useState<string[]>([]);
+
+  useEffect(() => {
+    timers.forEach((timer) => {
+      if (timerDurations[timer] < 1 || timerDurations[timer] > 60) {
+        if (!errors.includes(timer)) setErrors((prev) => [...prev, ...[timer]]);
+      } else if (errors.includes(timer)) {
+        setErrors((prev) => prev.filter((item) => item !== timer));
+      }
+    });
+  }, [timerDurations]);
+
+  const closeSettings = () => {
+    close();
+
+    setTimerDurations(state.timer.durations);
+  };
+
   return (
-    <div className={`settings-modal`}>
-      <div className="background-overlay"></div>
+    <div className={open ? "settings-modal open" : "settings-modal"}>
+      <div className="background-overlay" onClick={closeSettings}></div>
 
       <div className="modal">
         <header className="header">
           <h2 className="title">Settings</h2>
 
-          <button
-            className="close-button"
-          >
+          <button className="close-button" onClick={closeSettings}>
             <svg fill="currentColor" width="14" height="14" viewBox="0 0 14 14">
               <path d="M11.95.636l1.414 1.414L8.414 7l4.95 4.95-1.414 1.414L7 8.414l-4.95 4.95L.636 11.95 5.586 7 .636 2.05 2.05.636 7 5.586l4.95-4.95z" />
             </svg>
@@ -27,22 +48,37 @@ const SettingsModal = () => {
         </header>
 
         <form className="settings">
-          <SettingsSection title="Time (Minutes)" direction="column" showError>
-            <SettingsItem
-              id="POMODORO"
-              title="Pomodoro"
-              type="input"
-            />
-            <SettingsItem
-              id="SHORT_BREAK"
-              title="Short Break"
-              type="input"
-            />
-            <SettingsItem
-              id="LONG_BREAK"
-              title="Long Break"
-              type="input"
-            />
+          <SettingsSection title="Time (Minutes)" direction="column" errors={errors}>
+            {timers.map((timer, index) => (
+              <div
+                key={index}
+                className={errors.includes(timer) ? "input error" : "input"}
+              >
+                <label className="text" htmlFor={timer}>
+                  {timer
+                    .toLowerCase()
+                    .replace("_", " ")
+                    .replace(/(^\w{1})|(\s+\w{1})/g, (letter) =>
+                      letter.toUpperCase()
+                    )}
+                </label>
+
+                <input
+                  type="number"
+                  min="1"
+                  max="59"
+                  step="1"
+                  name={timer}
+                  value={timerDurations[timer]}
+                  onChange={(e) =>
+                    setTimerDurations((prev) => ({
+                      ...prev,
+                      ...{ [timer]: e.target.value },
+                    }))
+                  }
+                />
+              </div>
+            ))}
           </SettingsSection>
 
           <SettingsSection title="Font">
@@ -57,10 +93,7 @@ const SettingsModal = () => {
             <SettingsItem color="VIOLET" type="button" />
           </SettingsSection>
 
-          <button
-            type="submit"
-            className="apply-button"
-          >
+          <button type="submit" className="apply-button">
             Apply
           </button>
         </form>
@@ -72,26 +105,24 @@ const SettingsModal = () => {
 interface ISettingsSection {
   title: string;
   children: ReactNode;
-  showError?: boolean;
+  errors?: string[];
   direction?: "row" | "column";
 }
 
-const SettingsSection: FC<ISettingsSection> = ({
+const SettingsSection = ({
   title,
   children,
-  showError,
+  errors,
   direction = "row",
-}) => {
+}: ISettingsSection) => {
   return (
     <div className={`section ${direction}`}>
       <h3 className="title">{title}</h3>
 
       <div className="items">{children}</div>
 
-      {showError && (
-        <div
-          className={`errorMessage`}
-        >
+      {errors && (
+        <div className={errors.length > 0 ? "error visible" : "error"}>
           <svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24">
             <path
               fillRule="evenodd"
@@ -116,13 +147,7 @@ interface ISettingsItem {
   type: "input" | "button";
 }
 
-const SettingsItem: FC<ISettingsItem> = ({
-  id,
-  title,
-  font,
-  color,
-  type,
-}) => {
+const SettingsItem = ({ id, title, font, color, type }: ISettingsItem) => {
   return (
     <>
       {type === "input" && id && (
@@ -131,13 +156,7 @@ const SettingsItem: FC<ISettingsItem> = ({
             {title}
           </label>
 
-          <input
-            type="number"
-            min="1"
-            max="59"
-            step="1"
-            name={id}
-          />
+          <input type="number" min="1" max="59" step="1" name={id} />
         </div>
       )}
 

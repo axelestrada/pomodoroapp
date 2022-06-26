@@ -1,7 +1,6 @@
 import {
   createContext,
   Dispatch,
-  FC,
   ReactNode,
   useEffect,
   useReducer,
@@ -23,6 +22,11 @@ const initialState: IState = JSON.parse(localStorage.getItem(APP_STATE_NAME)!)
       },
       timer: {
         current: "POMODORO",
+        durations: {
+          POMODORO: 25,
+          SHORT_BREAK: 5,
+          LONG_BREAK: 15,
+        },
       },
     };
 
@@ -39,7 +43,7 @@ const combinedReducers = (
   timer: timerReducer(timer, action),
 });
 
-const AppProvider: FC<{ children: ReactNode }> = ({ children }) => {
+const AppProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(combinedReducers, initialState);
 
   useEffect(() => {

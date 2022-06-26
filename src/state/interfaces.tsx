@@ -16,8 +16,15 @@ export interface IThemeAction {
 }
 
 // Timer
+export interface ITimerDurations {
+  POMODORO: number;
+  SHORT_BREAK: number;
+  LONG_BREAK: number;
+}
+
 export interface ITimer {
   current: typeof timers[number];
+  durations: ITimerDurations;
 }
 
 export interface ITimerAction {

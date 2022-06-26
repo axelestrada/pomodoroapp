@@ -1,8 +1,9 @@
+import { MouseEventHandler } from "react";
 import "./styles/settingsButton.sass";
 
-const SettingsButton = () => {
+const SettingsButton = ({ toggleOpen }: { toggleOpen: () => void }) => {
   return (
-    <button className="settings-button">
+    <button className="settings-button" onClick={toggleOpen}>
       <svg
         fill="currentColor"
         width="24"
