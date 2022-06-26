@@ -1,5 +1,5 @@
 const THEME = "THEME";
-const TIMER_DURATIONS = "TIMER_DURATIONS";
+const TIMER = "TIMER";
 
-export default Object.freeze({ THEME, TIMER_DURATIONS });
-export { THEME, TIMER_DURATIONS };
+export default Object.freeze({ THEME, TIMER });
+export { THEME, TIMER };

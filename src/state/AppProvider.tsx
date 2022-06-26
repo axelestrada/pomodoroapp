@@ -6,8 +6,12 @@ import {
   useEffect,
   useReducer,
 } from "react";
-import { IState, IThemeAction, StateActions } from "./interfaces";
+
+import { IState, IThemeAction, ITimerAction, StateActions } from "./interfaces";
+
 import themeReducer from "./reducers/themeReducer";
+import timerReducer from "./reducers/timerReducer";
+
 const APP_STATE_NAME = "AppSettings";
 
 const initialState: IState = JSON.parse(localStorage.getItem(APP_STATE_NAME)!)
@@ -17,6 +21,9 @@ const initialState: IState = JSON.parse(localStorage.getItem(APP_STATE_NAME)!)
         font: "KUMBH_SANS",
         color: "RED",
       },
+      timer: {
+        current: "POMODORO",
+      },
     };
 
 const AppContext = createContext<{
@@ -24,8 +31,12 @@ const AppContext = createContext<{
   dispatch: Dispatch<StateActions>;
 }>({ state: initialState, dispatch: () => null });
 
-const combinedReducers = ({ theme }: IState, action: IThemeAction) => ({
+const combinedReducers = (
+  { theme, timer }: IState,
+  action: IThemeAction | ITimerAction
+) => ({
   theme: themeReducer(theme, action),
+  timer: timerReducer(timer, action),
 });
 
 const AppProvider: FC<{ children: ReactNode }> = ({ children }) => {

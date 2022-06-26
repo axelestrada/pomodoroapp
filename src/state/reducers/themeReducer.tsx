@@ -7,7 +7,7 @@ const themeReducer = (theme: ITheme, action: StateActions) => {
       return { ...theme, ...action.payload };
 
     default:
-      return theme
+      return theme;
   }
 };
 
