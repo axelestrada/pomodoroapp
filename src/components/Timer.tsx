@@ -57,8 +57,9 @@ const Timer = () => {
   }, [runningTimer]);
 
   useEffect(() => {
+    setRunningTimer(false);
     setTimerDuration(fullDuration);
-  }, [state.timer.current, state.timer.durations]);
+  }, [state.timer.current, state.timer.durations, state.timer.reset]);
 
   return (
     <button className="timer" onClick={() => setRunningTimer(!runningTimer)}>

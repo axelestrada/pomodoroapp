@@ -23,6 +23,7 @@ export interface ITimerDurations {
 }
 
 export interface ITimer {
+  reset: boolean;
   current: typeof timers[number];
   durations: ITimerDurations;
 }
