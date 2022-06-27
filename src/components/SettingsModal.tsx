@@ -1,4 +1,4 @@
-import { ReactNode, useContext, useEffect, useState } from "react";
+import { FormEvent, ReactNode, useContext, useEffect, useState } from "react";
 import { AppContext } from "../state/AppProvider";
 import { colors, fonts, timers } from "../state/interfaces";
 
@@ -11,10 +11,13 @@ const SettingsModal = ({
   open: boolean;
   close: () => void;
 }) => {
-  const { state } = useContext(AppContext);
+  const { state, dispatch } = useContext(AppContext);
 
   const [timerDurations, setTimerDurations] = useState(state.timer.durations);
   const [errors, setErrors] = useState<string[]>([]);
+
+  const [selectedFont, setSelectedFont] = useState(state.theme.font);
+  const [selectedColor, setSelectedColor] = useState(state.theme.color);
 
   useEffect(() => {
     timers.forEach((timer) => {
@@ -30,6 +33,24 @@ const SettingsModal = ({
     close();
 
     setTimerDurations(state.timer.durations);
+    setSelectedFont(state.theme.font);
+    setSelectedColor(state.theme.color);
+  };
+
+  const applySettings = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    dispatch({
+      type: "TIMER",
+      payload: { ...state.timer, ...{ durations: timerDurations } },
+    });
+
+    dispatch({
+      type: "THEME",
+      payload: { color: selectedColor, font: selectedFont },
+    });
+
+    close();
   };
 
   return (
@@ -47,7 +68,7 @@ const SettingsModal = ({
           </button>
         </header>
 
-        <form className="settings">
+        <form className="settings" onSubmit={applySettings}>
           <SettingsSection
             title="Time (Minutes)"
             direction="column"
@@ -70,7 +91,7 @@ const SettingsModal = ({
                 <input
                   type="number"
                   min="1"
-                  max="59"
+                  max="60"
                   step="1"
                   name={timer}
                   value={timerDurations[timer]}
@@ -89,8 +110,12 @@ const SettingsModal = ({
             {fonts.map((font, index) => (
               <button
                 key={index}
+                type="button"
                 data-font={font}
-                className="button font"
+                className={`button font ${
+                  selectedFont === font ? "active" : ""
+                }`}
+                onClick={() => setSelectedFont(font)}
               >
                 Aa
               </button>
@@ -98,23 +123,30 @@ const SettingsModal = ({
           </SettingsSection>
 
           <SettingsSection title="Color">
-           {colors.map((color, index) => (
-             <button
-             key={index}
-             data-color={color}
-             className="button color"
-           >
-             {state.theme.color === color && <svg
-              height="11"
-              width="15"
-              viewBox="0 0 15 11"
-              fill="none"
-              stroke="currentColor"
-            >
-              <path d="M1 5.5L4.95263 9.45263L13.4053 1" strokeWidth="2" />
-            </svg>}
-           </button>
-           ))}
+            {colors.map((color, index) => (
+              <button
+                key={index}
+                type="button"
+                data-color={color}
+                className="button color"
+                onClick={() => setSelectedColor(color)}
+              >
+                {selectedColor === color && (
+                  <svg
+                    height="11"
+                    width="15"
+                    viewBox="0 0 15 11"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <path
+                      d="M1 5.5L4.95263 9.45263L13.4053 1"
+                      strokeWidth="2"
+                    />
+                  </svg>
+                )}
+              </button>
+            ))}
           </SettingsSection>
 
           <button type="submit" className="apply-button">

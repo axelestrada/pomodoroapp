@@ -15,6 +15,7 @@ const Timers = () => {
         return(
         <button
           key={index}
+          data-font={state.theme.font}
           data-color={current ? state.theme.color : ""}
           className={current ? "action active" : "action"}
           onClick={() => {

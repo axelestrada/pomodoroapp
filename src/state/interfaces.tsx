@@ -29,7 +29,7 @@ export interface ITimer {
 
 export interface ITimerAction {
   type: typeof TIMER;
-  payload: ITimer;
+  payload: ITimer | ITimerDurations;
 }
 
 export interface IState {

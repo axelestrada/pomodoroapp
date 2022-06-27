@@ -58,7 +58,7 @@ const Timer = () => {
 
   useEffect(() => {
     setTimerDuration(fullDuration);
-  }, [state.timer.current]);
+  }, [state.timer.current, state.timer.durations]);
 
   return (
     <button className="timer" onClick={() => setRunningTimer(!runningTimer)}>
@@ -85,6 +85,7 @@ const Timer = () => {
         <text
           className="time"
           fill="currentColor"
+          data-font={state.theme.font}
           fontSize="1.5rem"
           textAnchor="middle"
           x="50%"
@@ -97,6 +98,7 @@ const Timer = () => {
         <text
           className="timer-state"
           fill="currentColor"
+          data-font={state.theme.font}
           fontSize="0.375rem"
           textAnchor="middle"
           x="50%"
