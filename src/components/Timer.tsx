@@ -1,22 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AppContext } from "../state/AppProvider";
 import "./styles/timer.sass";
 
 const Timer = () => {
-  const [runningTimer, setRunningTimer] = useState(false);
-
-  const [timerDuration, setTimerDuration] = useState(750);
-
-  useEffect(() => {
-    if (runningTimer) {
-      const interval = setInterval(() => {
-        setTimerDuration((prev) => prev - 1);
-      }, 1000);
-
-      return () => clearInterval(interval);
-    }
-  }, [runningTimer]);
-
-  const minutesToSeconds = (minutes: number) => minutes * 60;
+  const { state } = useContext(AppContext);
 
   const secondsToMinutes = (duration: number) => {
     let seconds: string | number = parseInt((duration % 60).toString(), 10);
@@ -35,34 +22,63 @@ const Timer = () => {
     currentDuration: number,
     fullDuration: number
   ) => {
-    const fullDurationSeconds = minutesToSeconds(fullDuration);
-
-    const singlePercent = fullDurationSeconds / 100;
-    const durationDifference = fullDurationSeconds - currentDuration;
+    const singlePercent = fullDuration / 100;
+    const durationDifference = fullDuration - currentDuration;
 
     return 100 - durationDifference / singlePercent;
   };
 
+  const minutesToSeconds = (minutes: number) => minutes * 60;
+
+  const fullDuration = minutesToSeconds(
+    state.timer.durations[state.timer.current]
+  );
+
+  const [runningTimer, setRunningTimer] = useState(false);
+  const [timerDuration, setTimerDuration] = useState(fullDuration);
+
+  let interval: number;
+
+  useEffect(() => {
+    if (runningTimer) {
+      interval = setInterval(() => {
+        setTimerDuration((prev) => {
+          if (prev === 0) {
+            setRunningTimer(false);
+            return fullDuration;
+          }
+
+          return prev - 1;
+        });
+      }, 1000);
+
+      return () => clearInterval(interval);
+    }
+  }, [runningTimer]);
+
+  useEffect(() => {
+    setTimerDuration(fullDuration);
+  }, [state.timer.current]);
+
   return (
-    <button
-      className="timer"
-      data-theme="RED"
-      onClick={() => setRunningTimer(!runningTimer)}
-    >
+    <button className="timer" onClick={() => setRunningTimer(!runningTimer)}>
       <svg className="progressbar" viewBox="0 0 100 100">
         <circle className="background" r="48" cx="50" cy="50" />
         <circle
           style={{ transform: "rotate(-0.25turn)", transformOrigin: "center" }}
           className="progress"
+          data-color={state.theme.color}
           fill="none"
           r="44"
           cx="50"
           cy="50"
+          stroke="currentColor"
           strokeDasharray="276.5 276.5"
           strokeLinecap="round"
           strokeWidth="3"
           strokeDashoffset={
-            276.5 - (durationToPercents(timerDuration, 1500) / 100) * 276.5
+            276.5 -
+            (durationToPercents(timerDuration, fullDuration) / 100) * 276.5
           }
         />
 

@@ -1,4 +1,3 @@
-@use "/src/styles/mixins" as *
 @import /src/styles/colors
 
 .settings-modal
@@ -120,29 +119,9 @@
               outline: 2px solid $GRAY
               outline-offset: 2px
 
-            &.font
-              &[data-font=KUMBH_SANS]
-                @include SetFont(KUMBH_SANS)
-
-              &[data-font=ROBOTO_SLAB]
-                @include SetFont(ROBOTO_SLAB)
-
-              &[data-font=SPACE_MONO]
-                @include SetFont(SPACE_MONO)
-
             &.active.font
               color: $WHITE
               background-color: $DARKESTBLUE
-
-            &.color
-              &[data-theme=RED]
-                background-color: $RED
-
-              &[data-theme=CYAN]
-                background-color: $CYAN
-
-              &[data-theme=VIOLET]
-                background-color: $VIOLET
 
         &>.error
           display: flex

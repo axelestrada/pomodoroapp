@@ -2,17 +2,21 @@ import { useContext } from "react";
 import { AppContext } from "../state/AppProvider";
 import { timers } from "../state/interfaces";
 
-import "./styles/actionsBar.sass";
+import "./styles/timers.sass";
 
 const Timers = () => {
   const { state, dispatch } = useContext(AppContext);
 
   return (
-    <div className="actions-bar" data-theme={state.theme.color}>
-      {timers.map((timer, index) => (
+    <div className="actions-bar">
+      {timers.map((timer, index) => {
+        const current = state.timer.current === timer;
+
+        return(
         <button
           key={index}
-          className={state.timer.current === timer ? "action active" : "action"}
+          data-color={current ? state.theme.color : ""}
+          className={current ? "action active" : "action"}
           onClick={() => {
             dispatch({
               type: "TIMER",
@@ -25,7 +29,7 @@ const Timers = () => {
             .replace("_", " ")
             .replace(/(^\w{1})|(\s+\w{1})/g, (letter) => letter.toUpperCase())}
         </button>
-      ))}
+      )})}
     </div>
   );
 };

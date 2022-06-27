@@ -1,3 +1,4 @@
+@use "/src/styles/mixins" as *
 @import colors
 
 *
@@ -38,3 +39,22 @@ input,
 button
   border: none
   outline: none
+
+// Fonts
+[data-color=RED]
+  background-color: $RED
+
+[data-color=CYAN]
+  background-color: $CYAN
+
+[data-color=VIOLET]
+  background-color: $VIOLET
+
+[data-font=KUMBH_SANS]
+  @include SetFont(KUMBH_SANS)
+
+[data-font=ROBOTO_SLAB]
+  @include SetFont(ROBOTO_SLAB)
+
+[data-font=SPACE_MONO]
+  @include SetFont(SPACE_MONO)

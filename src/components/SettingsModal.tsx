@@ -1,6 +1,6 @@
 import { ReactNode, useContext, useEffect, useState } from "react";
 import { AppContext } from "../state/AppProvider";
-import { timers } from "../state/interfaces";
+import { colors, fonts, timers } from "../state/interfaces";
 
 import "./styles/settingsModal.sass";
 
@@ -48,7 +48,11 @@ const SettingsModal = ({
         </header>
 
         <form className="settings">
-          <SettingsSection title="Time (Minutes)" direction="column" errors={errors}>
+          <SettingsSection
+            title="Time (Minutes)"
+            direction="column"
+            errors={errors}
+          >
             {timers.map((timer, index) => (
               <div
                 key={index}
@@ -82,15 +86,35 @@ const SettingsModal = ({
           </SettingsSection>
 
           <SettingsSection title="Font">
-            <SettingsItem font="KUMBH_SANS" type="button" />
-            <SettingsItem font="ROBOTO_SLAB" type="button" />
-            <SettingsItem font="SPACE_MONO" type="button" />
+            {fonts.map((font, index) => (
+              <button
+                key={index}
+                data-font={font}
+                className="button font"
+              >
+                Aa
+              </button>
+            ))}
           </SettingsSection>
 
           <SettingsSection title="Color">
-            <SettingsItem color="RED" type="button" />
-            <SettingsItem color="CYAN" type="button" />
-            <SettingsItem color="VIOLET" type="button" />
+           {colors.map((color, index) => (
+             <button
+             key={index}
+             data-color={color}
+             className="button color"
+           >
+             {state.theme.color === color && <svg
+              height="11"
+              width="15"
+              viewBox="0 0 15 11"
+              fill="none"
+              stroke="currentColor"
+            >
+              <path d="M1 5.5L4.95263 9.45263L13.4053 1" strokeWidth="2" />
+            </svg>}
+           </button>
+           ))}
           </SettingsSection>
 
           <button type="submit" className="apply-button">
@@ -136,52 +160,6 @@ const SettingsSection = ({
         </div>
       )}
     </div>
-  );
-};
-
-interface ISettingsItem {
-  title?: string;
-  id?: string;
-  font?: string;
-  color?: string;
-  type: "input" | "button";
-}
-
-const SettingsItem = ({ id, title, font, color, type }: ISettingsItem) => {
-  return (
-    <>
-      {type === "input" && id && (
-        <div className={`input`}>
-          <label className="text" htmlFor={id}>
-            {title}
-          </label>
-
-          <input type="number" min="1" max="59" step="1" name={id} />
-        </div>
-      )}
-
-      {type === "button" && (
-        <button
-          className={`button ${font ? "font" : "color"}`}
-          data-theme={color}
-          data-font={font}
-        >
-          {font && "Aa"}
-
-          {color && (
-            <svg
-              height="11"
-              width="15"
-              viewBox="0 0 15 11"
-              fill="none"
-              stroke="currentColor"
-            >
-              <path d="M1 5.5L4.95263 9.45263L13.4053 1" strokeWidth="2" />
-            </svg>
-          )}
-        </button>
-      )}
-    </>
   );
 };
 
