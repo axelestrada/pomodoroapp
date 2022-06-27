@@ -6,16 +6,14 @@ const Timer = () => {
   const { state } = useContext(AppContext);
 
   const secondsToMinutes = (duration: number) => {
-    let seconds: string | number = parseInt((duration % 60).toString(), 10);
-    let minutes: string | number = parseInt(
-      ((duration / 60) % 60).toString(),
-      10
+    let seconds = duration % 60;
+    let minutes = Math.floor(duration / 60);
+
+    return (
+      (minutes < 10 ? "0" + minutes : minutes) +
+      ":" +
+      (seconds < 10 ? "0" + seconds : seconds)
     );
-
-    seconds = seconds < 10 ? "0" + seconds : seconds;
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-
-    return minutes + ":" + seconds;
   };
 
   const durationToPercents = (
