@@ -66,4 +66,4 @@ cd pomodoroapp
 
 4. Luego, deberá instalar las dependencias del proyecto, ejecutando el comando `npm install` o `yarn install`. El cual instalará todas las dependecias necesarias para ejecutar el proyecto.
 
-5. Por ultimo bastará con ejecutar el comando `npm run dev` o `yarn dev`, lo cual iniciara un servidor de desarrollo al cual puede acceder desde [http://localhost:3000](http://localhost:3000) en su navegador favorito.
+5. Por ultimo bastará con ejecutar `npm run dev` o `yarn dev`, lo cual iniciara un servidor de desarrollo al cual puede acceder desde [http://localhost:3000](http://localhost:3000) en su navegador favorito.
