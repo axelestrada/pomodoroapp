@@ -66,4 +66,4 @@ cd pomodoroapp
 
 4. Luego, deberá instalar las dependencias del proyecto desde el archivo package.json, ejecutando el comando `yarn install`. El cual instalará todas las dependecias necesarias para ejecutar el proyecto.
 
-5. Por ultimo bastará con ejecutar el comando `yarn dev`, lo cual iniciara un servidor de desarrollo normalmente en el puerto 3000 de su localhost por lo que puede acceder a el ingresando la direccion localhost:3000 en su navegador preferido y deberia ser capaz de ver el proyecto en ejecución.
+5. Por ultimo bastará con ejecutar el comando `yarn dev`, lo cual iniciara un servidor de desarrollo al cual puede acceder desde [http://localhost:3000](http://localhost:3000)
