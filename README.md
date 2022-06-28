@@ -40,6 +40,26 @@ Debido a que no contaba con suficiente experiencia con el manejo de SVG's recurr
 
 ### useContext y useReducer
 
-Para manejar un estado global hice uso de useContext y useReducer para gestionar la configuracion de la aplicacion y guardarla en localStorage para que no se pierda la configuracion incluso luego de cerrar el navegador.
+Para manejar el estado global de la aplicación hice uso de useContext y useReducer para lograr el efecto esperado y a pesar de que nunca habia trabajado con ello antes encontre un articulo en [Dev.to - React context API state management with typescript](https://dev.to/forinda/react-context-api-state-management-with-typescript-193f) el cual me ayudo muchisimo a logral el efecto esperado.
 
 ## Desarrollo
+
+Las principales herramientas que utilice con este proyecto:
+
+- [ReactJS](https://reactjs.org) - Decidi hacer uso de ReactJS para este proyecto ya que a pesar de que lo domino bastante bien aun hay conceptos que no me quedan del todo claro y queria aprender a manejar un estado global sin la necesidad de usar redux sino unicamente el context API de React.
+
+- [Typescript](https://www.typescriptlang.org) - Para este proyecto decidi que queria tener una base solida y una buena estructura por lo que decidi usar ReactJS junto a typescript y aqunque al principio el tipado de algunos datos fue un poco dificil, logre que todo encajara perfectamente.
+
+- [SASS](https://sass-lang.com) - En un primer momento pense en utilizar algun framework para CSS como TailwindCSS o MaterialUI pero al final decidí poner a prueba mis habilidades y conocimientos de CSS utilizando unicamente el preprocesador SASS para maquetar toda la aplicación.
+
+### Como Ejecutar el Proyecto
+
+1. Antes que todo debería clonar el repositorio en su disco local ejecutando el siguiente comando `git clone https://github.com/axelestrada/pomodoroapp.git` y seguidamente posicionarse en la carpeta del proyecto con el comando `cd pomodoroapp`.
+
+1. Luego, asegurese de tener instalado Node. Vea las ultimas instrucciones [aquí](https://nodejs.org/en/download). Una vez completado este paso, verifque que [NPM](https://docs.npmjs.com/getting-started) esta disponible ejecutando el comando `npm -v` en su terminal, esto debería mostrar la versión de NPM instalada.
+
+2. También debera instalar el gestor de paquetes [Yarn](https://yarnpkg.com/getting-started/install) ejecutando el comando `npm install yarn -g` en su terminal.
+
+3. Luego, deberá instalar las dependencias del proyecto desde el archivo package.json, ejecutando el comando `yarn install`. El cual instalará todas las dependecias necesarias para ejecutar el proyecto.
+
+4. Por ultimo bastará con ejecutar el comando `yarn dev`, lo cual iniciara un servidor de desarrollo normalmente en el puerto 3000 de su localhost por lo que puede acceder a el ingresando la direccion localhost:3000 en su navegador preferido y deberia ser capaz de ver el proyecto en ejecución.
