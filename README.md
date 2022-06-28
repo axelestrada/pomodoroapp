@@ -38,10 +38,6 @@ Debido a que no contaba con suficiente experiencia con el manejo de SVG's recurr
 - [CodePen Demo using SVG Path](https://codepen.io/web-tiki/pen/qEGvMN)
 - [CSS-Tricks article with using SVG Circle](https://css-tricks.com/building-progress-ring-quickly)
 
-### Selector de atributos CSS
-
-Al momento de querer personalizar el color y la fuente de la interfaz de la aplicación en lugar de utilizar clases para establecer el color y fuente de cada elemento recurri al uso de atributos data en este data-color y data-font para aplicar el color y la fuente correspondiente al elemento que contuviese dicho atributo.
-
 ### useContext y useReducer
 
 Para manejar un estado global hice uso de useContext y useReducer para gestionar la configuracion de la aplicacion y guardarla en localStorage para que no se pierda la configuracion incluso luego de cerrar el navegador.
