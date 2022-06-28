@@ -54,12 +54,16 @@ Las principales herramientas que utilice con este proyecto:
 
 ### Como Ejecutar el Proyecto
 
-1. Antes que todo debería clonar el repositorio en su disco local ejecutando el siguiente comando `git clone https://github.com/axelestrada/pomodoroapp.git` y seguidamente posicionarse en la carpeta del proyecto con el comando `cd pomodoroapp`.
+1. Antes que todo debería clonar el repositorio en su disco local
+```bash
+git clone https://github.com/axelestrada/pomodoroapp.git
+cd pomodoroapp
+```
 
-1. Luego, asegurese de tener instalado Node. Vea las ultimas instrucciones [aquí](https://nodejs.org/en/download). Una vez completado este paso, verifque que [NPM](https://docs.npmjs.com/getting-started) esta disponible ejecutando el comando `npm -v` en su terminal, esto debería mostrar la versión de NPM instalada.
+2. Luego, asegurese de tener instalado Node. Vea las ultimas instrucciones [aquí](https://nodejs.org/en/download). Una vez completado este paso, verifque que [NPM](https://docs.npmjs.com/getting-started) esta disponible ejecutando el comando `npm -v` en su terminal, esto debería mostrar la versión de NPM instalada.
 
-2. También debera instalar el gestor de paquetes [Yarn](https://yarnpkg.com/getting-started/install) ejecutando el comando `npm install yarn -g` en su terminal.
+3. También debera instalar el gestor de paquetes [Yarn](https://yarnpkg.com/getting-started/install) ejecutando el comando `npm install yarn -g` en su terminal.
 
-3. Luego, deberá instalar las dependencias del proyecto desde el archivo package.json, ejecutando el comando `yarn install`. El cual instalará todas las dependecias necesarias para ejecutar el proyecto.
+4. Luego, deberá instalar las dependencias del proyecto desde el archivo package.json, ejecutando el comando `yarn install`. El cual instalará todas las dependecias necesarias para ejecutar el proyecto.
 
-4. Por ultimo bastará con ejecutar el comando `yarn dev`, lo cual iniciara un servidor de desarrollo normalmente en el puerto 3000 de su localhost por lo que puede acceder a el ingresando la direccion localhost:3000 en su navegador preferido y deberia ser capaz de ver el proyecto en ejecución.
+5. Por ultimo bastará con ejecutar el comando `yarn dev`, lo cual iniciara un servidor de desarrollo normalmente en el puerto 3000 de su localhost por lo que puede acceder a el ingresando la direccion localhost:3000 en su navegador preferido y deberia ser capaz de ver el proyecto en ejecución.
