@@ -56,7 +56,7 @@ Las principales herramientas que utilice con este proyecto:
 
 Para comenzar, simplemente clone este repositorio. Necesitará `node.js` y `git` instalados globalmente en su computadora.
 
-Ejecutar
+Ejecute
 
 ```bash
 npm install
