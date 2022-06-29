@@ -14,7 +14,7 @@ En esta ocasión, la idea evoluciona para tener 3 valores abreviados para establ
 
 Para mostrar el tiempo transcurrido hice uso de una barra de progreso circular la cual funciona en el sentido contrario de las agujas del reloj, y el tiempo se disminuye en consecuencia, es decir, los valores van desde la duracion del temporizador a cero
 
-Principales Características:
+### Principales Características:
 
 - Capacidad para iniciar 3 tipos de temporizadores
 - Posibilidad de cambiar el aspecto de la aplicación
