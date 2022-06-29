@@ -2,11 +2,11 @@
 
 ![Pomodoro App Preview](./readme-preview.png)
 
-- [Descripcion General](#descripcion-general)
-- [Que Aprendi](#que-aprendi)
+- [Descripción General](#descripción-general)
+- [Desafíos](#desafíos)
 - [Desarrollo](#desarrollo)
 
-## Descripcion General
+## Descripción General
 
 La [Técnica Pomodoro](https://es.wikipedia.org/wiki/T%C3%A9cnica_Pomodoro) es un método para mejorar la administración del tiempo dedicado a una actividad que se basa en usar un temporizador para dividir el tiempo en intervalos fijos, llamados pomodoros, de 25 minutos de actividad, seguidos de 5 minutos de descanso, con pausas más largas cada cuatro pomodoros, dando asi un total de 6.
 
@@ -21,7 +21,7 @@ Principales Características:
 - Capacidad para pausar, iniciar y reiniciar el temporizador
 - Posibilidad de personalizar cada uno de los temporizadores
 
-## Que Aprendi
+## Desafíos
 
 ### Navegadores Moviles y 100VH
 
@@ -52,18 +52,18 @@ Las principales herramientas que utilice con este proyecto:
 
 - [SASS](https://sass-lang.com) - En un primer momento pense en utilizar algun framework para CSS como TailwindCSS o MaterialUI pero al final decidí poner a prueba mis habilidades y conocimientos de CSS utilizando unicamente el preprocesador SASS para maquetar toda la aplicación.
 
-### Como Ejecutar el Proyecto
+### Como Instalar
 
-1. Antes que todo debera clonar el repositorio en su disco local
+Para comenzar, simplemente clone este repositorio. Necesitará `node.js` y `git` instalados globalmente en su computadora.
+
+Ejecutar
+
 ```bash
-git clone https://github.com/axelestrada/pomodoroapp.git
-cd pomodoroapp
+npm install
 ```
 
-2. Luego, asegurese de tener instalado Node. Vea las ultimas instrucciones [aquí](https://nodejs.org/en/download). Una vez completado este paso, verifque que [NPM](https://docs.npmjs.com/getting-started) esta disponible ejecutando el comando `npm -v` en su terminal, esto debería mostrar la versión de NPM instalada.
+```bash
+npm run dev
+```
 
-3. Opcionalmente puede instalar el gestor de paquetes [Yarn](https://yarnpkg.com/getting-started/install) ejecutando `npm install yarn -g` en su terminal.
-
-4. Luego, deberá instalar las dependencias del proyecto, ejecutando el comando `npm install` o `yarn install`. El cual instalará todas las dependecias necesarias para ejecutar el proyecto.
-
-5. Por ultimo bastará con ejecutar `npm run dev` o `yarn dev`, lo cual iniciara un servidor de desarrollo al cual puede acceder desde [http://localhost:3000](http://localhost:3000) en su navegador favorito.
+Abra [http://localhost:3000](http://localhost:3000) con su navegador para ver la aplicación.
