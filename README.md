@@ -1,6 +1,6 @@
 # Temporizador Pomodoro
 
-![Pomodoro App Preview](./pomodoro-preview.jpeg)
+![Pomodoro App Preview](./readme-preview.png)
 
 - [Descripcion General](#descripcion-general)
 - [Que Aprendi](#que-aprendi)
